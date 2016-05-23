@@ -3,18 +3,17 @@ var webpack = require('webpack')
 
 module.exports = {
     context: path.join(__dirname, 'app'),
-    entry: [
-        'webpack-dev-server/client?http://localhost:4444',
-        'webpack/hot/dev-server',
-        './main.js'
-    ],
+    entry: {
+        javascript: './main.js',
+        html: './index.html'
+    },
     output: {
         path: path.join(__dirname, 'static'),
         filename: 'bundle.js'
     },
     devServer: {
-        inline: true,
-        port: 4444
+        port: 4444,
+        historyApiFallback: true
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
@@ -31,6 +30,8 @@ module.exports = {
             include: __dirname
         }, {
             test: /\.json$/, loader: 'json-loader'
+        }, {
+            test: /\.html$/, loader: 'file?name=[name].[ext]'
         }]
     }
 }

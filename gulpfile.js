@@ -11,7 +11,6 @@ var webpackConfig    = require('./webpack.config');
 
 gulp.task('webpack-dev-server', function () {
     var config = Object.create(webpackConfig);
-
     config.devtool = 'eval';
     config.debug = true;
 
