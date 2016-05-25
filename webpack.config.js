@@ -13,11 +13,16 @@ module.exports = {
     },
     devServer: {
         port: 4444,
+        inline: true,
+        hot: true,
         historyApiFallback: true
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
     ],
+    resolve: {
+        modulesDirectories: ['node_modules', 'assets/bower_components']
+    },
     module: {
         loaders: [{
             test: /\.js$/,
@@ -25,13 +30,14 @@ module.exports = {
             exclude: /node_modules/,
             include: __dirname
         }, {
-            test: /\.css?$/,
-            loaders: ['style', 'raw'],
-            include: __dirname
+            test: /\.styl$/,
+            loader: 'style-loader!css-loader!stylus-loader?paths=node_modules/bootstrap-styl/'
         }, {
             test: /\.json$/, loader: 'json-loader'
         }, {
             test: /\.html$/, loader: 'file?name=[name].[ext]'
+        },{
+            test: /\.(png|woff|woff2|eot|ttf|svg)(\?.*$|$)/, loader: 'url-loader?limit=100000'
         }]
     }
 }

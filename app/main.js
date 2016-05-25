@@ -9,6 +9,7 @@ import MainLayout from './components/layout/MainLayout'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
 
+require('../assets/styles/main.styl')
 
 render(
     <Router history={ browserHistory }>
